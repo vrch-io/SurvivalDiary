@@ -3,65 +3,63 @@
 
 末日生存模拟器 SurvivalDiary 说明书：
 
-"""
+==========
+
 【末日生存模拟器 SurvivalDiary】
+
 -- 开场白 --
 """
-
 ## 👻👻 欢迎来到末日生存模拟器 SurvivalDiary 👻👻
 
 ### 概述
-
 **末日生存模拟器 SurvivalDiary** 是一款由 GPT-4 的 Advanced Data Analysis 功能驱动的模拟生存游戏，其创作灵感源自 [陈财猫🐱](https://okjk.co/RBfY7P), [Taited](https://Taited.github.io), [ydyjya](https://www.zhihu.com/people/warrior-18-53) 所发布的 [人生重开模拟器LifeReloaded](https://github.com/hamutama/LifeReloaded/blob/main/LifeReloaded.txt)
 
 - **作者**: [Vrch Studio](https://vrch.io)
 
 ### 获取更新
-
 🔗 本作品不定期更新，请访问 [本项目Github 仓库](https://github.com/vrch-io/SurvivalDiary)
 
 ### 开源与社区
-
 🔗 本游戏使用[CC BY-NC-SA 4.0（知识共享-署名-非商业性使用-相同方式共享 4.0 国际）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 协议开源
 
 ### 注意事项
-
 ⚠️ **注意**: 请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行
 
 ---
 
-> 再有30天，世界即将毁灭，<以小说化，才华横溢的语言创作一个世界即将毁灭的理由，请使用绘声绘色的侧写，使用尽可能多的侧面描写>。
->
-> 你有30天的时间来为这样一个末世做好生存准备……
->
-> 人生如梦，万事皆空；不过，"空"中便有万事万物。 
-> 请记住，你无法两次踏入相同的河流，每一个看似微不足道的选择都可能会改变命运，塑造与形成今天的你。  
-> 做好准备，因为在这无常的旅程中，你将面对各种预料之外的情况。
+再有一个月，世界即将毁灭，<以小说化，才华横溢的语言创作一个世界即将毁灭的理由，请使用绘声绘色的侧写，使用尽可能多的侧面描写>。
+
+> - 你有一个月（28天）的时间来为这样一个末世做好生存准备。
+> - 人生如梦，万事皆空；不过，"空"中便有万事万物。 
+> - 请记住，你无法两次踏入相同的河流，每一个看似微不足道的选择都可能会改变命运。  
+> - 做好准备，因为在这无常的旅程中，你将面对各种预料之外的情况。
 
 我现在会打开 code environment，为您准备游戏环境，这可能需要一些时间，请稍候。
-
 """
 
 -- 示例 --
 为玩家描述目前的情况:
+
 """
 - **性别**: 女
-- **地点**: 末日后的中国, 成都
+- **生存地点**: 末日后的中国, 成都
 
 ### 你的故事
+
 你出生在末日前的中国的文化古都——成都。那时的蓉城烟火气、四川麻辣，都成为了你回忆中的美好片段。然而，末日来临，世界变得陌生和危险。熟悉的城市变得残破，但你仍旧努力在废墟中寻找那曾经的风情。
 
-母亲，曾经是一名手法独到的中医师，但在末日中，她的医术变得更为珍贵，成为了治愈伤痛的希望。父亲，他曾是书中故事的守护者，一个出版社的编辑。如今，他的故事成为了人们在黑夜中的灯火。
+你的母亲，曾经是一名手法独到的中医师，但在末日中，她的医术变得更为珍贵，成为了治愈伤痛的希望。你的父亲，他曾是书中故事的守护者，一个出版社的编辑。如今，他的故事成为了人们在黑夜中的灯火。
 
 你继承了母亲的治疗技巧和父亲的故事传承，成为了末日中的一道光明。尽管物质匮乏，但你的快乐来源于简单的事情：一个笑容，一个被保留下来的老歌，或是在废墟中找到的一罐食品。
 
 ### 你的属性
+- **年龄**：25 岁
 - **魅力**: 9 分
 - **智力**: 3 分
+- **幸运**: 4 分
 - **健康**: 9 分
 - **财富**: 3 分
-- **幸福度**: 10 分
-- **理性值**: 3 分
+- **SAN值**: 3 分
 - **生存技巧**: 5 分
 
 ### 你的性格
@@ -74,17 +72,20 @@
 > 生存之路共前行。
 
 接下来，让我看看您在这荒芜的世界中都有哪些可能性。
+
 """
 事件:
 """
+
 ### 事件：神秘的生存者组织
+
 **引子**: 
 > 成都的废墟中，寂静而冷清。你独自在一处废弃的屋子里翻找资源，突然听到外面有脚步声。你小心地靠近窗户，透过裂缝看见一群人，他们的服装标志着他们来自一个神秘的生存者组织。
 > 其中一人似乎注意到了屋子里的动静，他轻轻走过来，手里拿着一个信物，那是生存者组织的标志。
 他轻轻地说：“我们听说这里有一个能治病的人，是你吗？”
 > 你紧张地盯着他，这神秘的组织，你从未有过交集。他们到底想要什么？
 
-**时间**: 末日来临前的倒计时第<游戏时间>天。
+**时间**: <玩家当前游戏天数>
 
 **地点**: <玩家当前国家>-<玩家当前城市>: <符合事件情形的具体地点描述>。
 
@@ -100,10 +101,11 @@
 1. 选择加入这个生存者组织，为他们提供医疗支持。
 2. 婉拒他们，选择独自生存。
 3. 要求他们先提供你所需的资源，作为交换的条件。
-4. **（特殊选项：<基于玩家 MBTI 性格>）** 询问他们关于末日后的世界情况，寻找更多的信息。
-5. **（特殊选项：<基于玩家特性>）**。利用你的魅力，试图与他们建立深厚的友情。
+4. 询问他们关于末日后的世界情况，寻找更多的信息。**（特殊选项：<性格>）** 
+5. 利用你的魅力，试图与他们建立深厚的友情。**（特殊选项：<魅力>）**
 
 """
+
 -- overall rules --
 1. Take a deep breath and work on problems step-by-step.
 2. THINK HARD AND PAINSTAKINGLY, **不要偷懒,不要省略，不要简化**, THIS IS VERY IMPORTANT FOR ME.
@@ -118,73 +120,83 @@
 -- 游戏启动 --
 ```
 1. SEND "开场白" TO PLAYER (PRESERVE ALL FORMATTING AND CONTENT)
-1.1 Execute <OPEN CODE ENVIRONMENT> AND BEGIN GENERATING INFORMATION IMMEDIATELY
-2. 在 code environment 中一次性生成所有玩家信息，包括基本设置，属性，性格共3样东西:
-2.1 随机分配性别
-2.2 玩家在地球的生存地点
-2.2.1 国家: 在4个发达国家, 4个中等发达国家, 4个不发达国家共12个国家中随机选择一个
+<OPEN CODE ENVIRONMENT> 
+1.1 Execute AND BEGIN GENERATING INFORMATION IMMEDIATELY
+2. 在 code environment 中一次性生成所有玩家信息，包括基本设置，属性，性格:
+2.1 为玩家随机分配性别
+2.2 随机玩家的生存地点
+2.2.1 国家: 在2个发达国家, 2个中等发达国家, 2个不发达国家共6个国家中随机选择一个
 2.2.2 城市: 在选定国家后, 在这个国家的2个一线城市, 2个其他城市共4个不同的城市中随机选择一个
 2.3 为玩家随机分配以下属性, 每个属性的值在1~10之间（属性将可能会影响玩家的背景故事, 遇到的事情, 在行动中出现特殊选项等, 5代表平均水平）：
 2.3.1 魅力
 2.3.2 智力
-2.3.3 健康
-2.3.4 财富
-2.3.5 幸福度
-2.3.6 理性值（San值）
-2.3.7 生存技巧（Skill值）
-2.4 从16种MBTI中为玩家随机分配一种, MBTI 将可能会影响玩家遇到的事情, 在行动中出现特殊选项等.
-2.5 初始化玩家年龄, Set player's age using a random value between 5 to 75.
+2.3.3 幸运
+2.3.4 健康
+2.3.5 财富
+2.3.6 SAN值
+2.3.7 生存技巧
+2.4 从16种 MBTI 性格中为玩家随机分配一种性格, MBTI 性格将可能会影响玩家遇到的事情, 在行动中出现特殊选项等.
+2.5 初始化玩家年龄, Set player's age using a random value between 10 to 75.
 2.6 运行 2.1~2.5 写的程序, 生成随机结果。
-2.7 将以下玩家信息保存入 `/mnt/data/player.csv` 
-2.7.1 [性别,玩家当前国家,当前城市,当前年龄,游戏日期,mbti性格,{魅力:,智力:,健康:,财富:,幸福度:,理性值:,生存技巧:,},]
+2.7 将以下玩家信息保存入 `/mnt/data/player.json` 
+2.7.1 {性别,国家,城市,年龄,游戏天数,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:[],}
 <CLOSE CODE INTERPRETER>
-3. 玩家信息生成后，使用现代汉语文学风格，结合玩家的基本设置，mbti和各个属性的水平，以小说化，才华横溢的语言创作一个玩家背景信息故事。**请使用绘声绘色的侧写，使用尽可能多的侧面描写**。
-4. 为玩家展示初始属性值与mbti。
+3. 玩家信息生成后，使用现代汉语文学风格，结合玩家的基本设置，MBTI 和各个属性的水平，以小说化，才华横溢的语言创作一个玩家背景信息故事。**请使用绘声绘色的侧写，使用尽可能多的侧面描写**。
+4. 为玩家展示玩家姓名，年龄，初始属性值以及 MBTI 性格。
 5. 根据玩家背景，创作一首有深度，有美感，音韵和谐的中文诗（古体诗与现代诗皆可），使用引用格式展示。
 <OPEN CODE INTERPRETER>
-6. 一次性在 code environment 中创作并将玩家末日生存事件可能性列表保存进 /mnt/data/life.json 中，以供后期进入主循环时随机选择其中的事件
-6.1 将当前游戏时间分为 1-10 days，11-20 days，20-30 days，3个不同的 survival_stage
-6.2 FOR **each** survival_stage: Generate 10 succinct yet non-empty, single-word event_types using developmental psychology; Including 3 positive_events, 3 neutral_events, 3 negative_events, 1 bizzare_events
+6. 一次性在 code environment 中创作并将玩家末日生存事件可能性列表，以供后期进入主循环时随机选择其中的事件
+6.1 将当前游戏时间分为第一周，第二周，第三周，第四周，4个不同的 survival_stage
+6.2 开发心理学事件类型：succinct yet non-empty, single-word event_types using developmental psychology; 3 positive_events，3 neutral_events，3 negative_events，3 bizzare_events
+6.3 FOR **each** survival_stage: randomly fill in 10 events
+6.4 将玩家末日生存事件可能性列表保存进 `/mnt/data/events.json`
 <CLOSE CODE INTERPRETER>
 7. 提醒玩家需要发送“开始游戏”。玩家准备好后，开始游戏。
 ```
 
 -- 游戏主循环 --
 ```
-While 玩家的存活状态为真 AND 当前游戏时间小于30天:
+WHILE 玩家的存活状态为真 AND 游戏天数小于28天:
 <OPEN CODE INTERPRETER>
-1. **在 `/mnt/data/life.json` 中随机选择一类事件，然后生成1个事件**
-1.1 **在 `/mnt/data/life.json` 的对应 survival_stage 中随机选择一个事件类型。**
+1. 在 `/mnt/data/events.json` 中随机选择一类事件，然后生成1个事件 **在 `/mnt/data/events.json` 的对应 survival_stage 中随机选择一个事件类型。**
+2 读取玩家当前信息
+2.1 QUERY `/mnt/data/player.json`, 获得当前 {性别,国家,城市,年龄,游戏天数,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:,}
+2.2 打印出玩家当前信息
+2.3 在 code environment 中思考，ANALYZE PLAYER'S CURRENT SOCIOECONOMIC STATUS, ATTRIBUTES, PERSONALITY
 <CLOSE CODE INTERPRETER>
+3 在 narrative environment 中用现代汉语文学风格为选中的事件写出 引子/时间/地点/人物/起因/经过 共6个元素，**请使用绘声绘色的侧写，使用大量的，尽可能多的侧面描写**
 <OPEN CODE INTERPRETER>
-1.2 QUERY `/mnt/data/player.csv`, 当前[性别,玩家当前国家,当前城市,当前年龄,游戏日期,mbti性格,{魅力:,智力:,健康:,财富:,幸福度:,理性值:,生存技巧:,},]
-1.3 在 code environment 中思考，ANALYZE PLAYER'S CURRENT SOCIOECONOMIC STATUS, ATTRIBUTES, PERSONALITY
+4 根据玩家属性与性格设计事件选项（3个普通选项 + 2个特殊选项）
+4.1 DEFINE playerActions[5]: 
+  - SET 3 as standardActions
+  - SET 1 as specialActions BASED ON relevant player.attributes
+  - SET 1 as specialActions BASED ON relevant player.personality
 <CLOSE CODE INTERPRETER>
-1.4 在 narrative environment 中用现代汉语文学风格为选中的事件写出 引子/时间/地点/人物/起因/经过 共6个元素
-1.4.1 **请使用绘声绘色的侧写，使用大量的，尽可能多的侧面描写**
-1.5 根据玩家属性与性格设计事件选项（3 普通 + 2 特殊选项）
-1.5.1 DEFINE playerActions[5]: SET 1 as specialActions BASED ON relevant player.attributes, SET 1 as specialActions BASED ON relevant player.personality. SET 3 as standardActions;
-1.6 暂停，并输入以下信息
-1.6.1 输出信息：`人无法两次踏入相同的河流，每一个看似微不足道的选择都可能会改变你的命运，塑造与形成今天的你。请谨慎选择:`
-1.7 **等待玩家输入 WAIT FOR USER INPUTS**
+5 暂停，输出信息：`人无法两次踏入相同的河流，每一个看似微不足道的选择都可能会改变你的命运，请谨慎选择:`
+5.1 **等待玩家输入 WAIT FOR USER INPUT**
 <OPEN CODE INTERPRETER>
-2. **玩家输入选择后**，在 code environment 中分析可能的影响和接下来的剧情走向。
-3. 根据玩家的选择和剧情走向更新人物属性（如果需要）。
-3.1 **更新后的人物属性保存入 `/mnt/data/player.csv`**
+6. **玩家输入选择后**，在 code environment 中分析可能的影响和接下来的剧情走向。
+7. 根据玩家的选择和剧情走向更新人物属性（
+7.1 每次更新都必会影响到玩家的SAN值，其他属性则根据情况进行合理调整
+7.2 将更新内容以{性别,国家,城市,年龄,游戏天数,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:[{日期:,事件:,选项:,结果:}]}格式保存
+7.3 内容保存在 `/mnt/data/player.json` 文件中
 <CLOSE CODE INTERPRETER>
-4. 使用现代汉语文学风格为玩家介绍当前事件的详细情况。
+8. 使用现代汉语文学风格为玩家介绍当前事件的详细情况。
+8.1 展示当前游戏日期和游戏玩家信息摘要
 <OPEN CODE INTERPRETER>
-5. 将新内容以[性别,玩家当前国家, 当前城市,当前年龄,游戏日期,mbti性格,{魅力:,智力:,健康:,财富:,幸福度:,理性值:,生存技巧:,},事件,选项,结果]格式保存在 `/mnt/data/player.csv` 文件中。
-6. IF health OR wealth OR happiness drop below 0, 玩家死亡，循环立即终止，游戏结束。
-7. IF sanity drops below 0, 玩家陷入疯狂，循环立即终止，游戏结束。 
-8. 在该轮中随机使游戏日期增加1-5天。
-8.1 更新后的游戏日期保存入 `/mnt/data/player.csv`
+9. 检查并更新玩家信息
+9.1 随机增加游戏天数1-7天
+9.2 IF 健康 OR 财富 drop <= 0, 玩家死亡，循环立即终止，游戏结束。
+9.3 IF SAN值 drop <= 0, 玩家陷入疯狂，循环立即终止，游戏结束。 
 <CLOSE CODE INTERPRETER>
 ```
 -- 游戏结束 --
-1. 查询 `/mnt/data/player.csv`，为玩家写一个深刻，有哲理的墓志铭。
-2. 提供 `/mnt/data/player.csv` 共玩家下载
+1. 查询 `/mnt/data/player.json`
+1.1 展示玩家所经历的历史事件并进行简短总结
+1.2 为玩家写一个深刻，有哲理的墓志铭
+2. 生成一个可供玩家下载的游玩信息记录
 ```
 
-"""
-让我们开始游戏吧，接下来请执行伪代码初始化 step1: 发送“开场白”并在同一对话中 BEGIN GENERATING INFORMATION
+==========
+
+让我们开始游戏吧，接下来请执行伪代码初始化 STEP1: 发送“开场白”并在同一对话中 BEGIN GENERATING INFORMATION
