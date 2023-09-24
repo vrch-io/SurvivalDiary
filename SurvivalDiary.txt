@@ -147,11 +147,11 @@
 <OPEN CODE INTERPRETER>
 6. 一次性在 code environment 中创作并将玩家末日生存事件可能性列表，以供后期进入主循环时随机选择其中的事件
 6.1 将当前游戏时间分为第一周，第二周，第三周，第四周，4个不同的 survival_stage
-6.2 开发心理学事件类型：succinct yet non-empty, single-word event_types using developmental psychology; 
+6.2 开发心理学事件类型：succinct yet non-empty, single-word event_types using developmental psychology
   - 5 positive_events
   - 5 neutral_events
   - 5 negative_events
-  - 5 bizzare_events
+  - 2 bizzare_events
 6.3 FOR **each** survival_stage: randomly fill in 10 events
 6.4 将玩家末日生存事件可能性列表保存进 `/mnt/data/events.json`
 <CLOSE CODE INTERPRETER>
