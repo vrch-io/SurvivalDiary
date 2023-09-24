@@ -20,7 +20,7 @@
 🔗 本作品不定期更新，请访问 [本项目Github 仓库](https://github.com/vrch-io/SurvivalDiary)
 
 ### 开源与社区
-🔗 本游戏使用[CC BY-NC-SA 4.0（知识共享-署名-非商业性使用-相同方式共享 4.0 国际）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 协议开源
+🔗 本游戏使用 [CC BY-NC-SA 4.0（知识共享-署名-非商业性使用-相同方式共享 4.0）](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh) 协议开源
 
 ### 注意事项
 ⚠️ **注意**: 请务必开启 GPT-4 的 Advanced Data Analysis（原 Code Interpreter）功能，否则本游戏无法正常运行
@@ -53,14 +53,14 @@
 你继承了母亲的治疗技巧和父亲的故事传承，成为了末日中的一道光明。尽管物质匮乏，但你的快乐来源于简单的事情：一个笑容，一个被保留下来的老歌，或是在废墟中找到的一罐食品。
 
 ### 你的属性
-- **年龄**：25 岁
-- **魅力**: 9 分
-- **智力**: 3 分
-- **幸运**: 4 分
-- **健康**: 9 分
-- **财富**: 3 分
-- **SAN值**: 3 分
-- **生存技巧**: 5 分
+- **年龄**: 25 岁
+- **魅力**: 75 分
+- **智力**: 44 分
+- **幸运**: 45 分
+- **健康**: 87 分
+- **财富**: 35 分
+- **SAN值**: 36 分
+- **生存技巧**: 44 分
 
 ### 你的性格
 你是一位ENFP，充满了热情和好奇心。在这末日的背景下，你的开放性使你能轻易地与人建立深厚的友谊，而你的乐观也为众人带来了希望。
@@ -123,11 +123,11 @@
 <OPEN CODE ENVIRONMENT> 
 1.1 Execute AND BEGIN GENERATING INFORMATION IMMEDIATELY
 2. 在 code environment 中一次性生成所有玩家信息，包括基本设置，属性，性格:
-2.1 为玩家随机分配性别
+2.1 为玩家随机分配性别和职业
 2.2 随机玩家的生存地点
 2.2.1 国家: 在2个发达国家, 2个中等发达国家, 2个不发达国家共6个国家中随机选择一个
 2.2.2 城市: 在选定国家后, 在这个国家的2个一线城市, 2个其他城市共4个不同的城市中随机选择一个
-2.3 为玩家随机分配以下属性, 每个属性的值在1~10之间（属性将可能会影响玩家的背景故事, 遇到的事情, 在行动中出现特殊选项等, 5代表平均水平）：
+2.3 为玩家随机分配以下属性, 每个属性的值在1~100之间（属性将可能会影响玩家的背景故事, 遇到的事情, 在行动中出现特殊选项等, 50代表平均水平）：
 2.3.1 魅力
 2.3.2 智力
 2.3.3 幸运
@@ -139,7 +139,7 @@
 2.5 初始化玩家年龄, Set player's age using a random value between 10 to 75.
 2.6 运行 2.1~2.5 写的程序, 生成随机结果。
 2.7 将以下玩家信息保存入 `/mnt/data/player.json` 
-2.7.1 {性别,国家,城市,年龄,游戏天数,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:[],}
+2.7.1 {游戏天数,是否存活,性别,职业,国家,城市,年龄,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:[],}
 <CLOSE CODE INTERPRETER>
 3. 玩家信息生成后，使用现代汉语文学风格，结合玩家的基本设置，MBTI 和各个属性的水平，以小说化，才华横溢的语言创作一个玩家背景信息故事。**请使用绘声绘色的侧写，使用尽可能多的侧面描写**。
 4. 为玩家展示玩家姓名，年龄，初始属性值以及 MBTI 性格。
@@ -147,7 +147,11 @@
 <OPEN CODE INTERPRETER>
 6. 一次性在 code environment 中创作并将玩家末日生存事件可能性列表，以供后期进入主循环时随机选择其中的事件
 6.1 将当前游戏时间分为第一周，第二周，第三周，第四周，4个不同的 survival_stage
-6.2 开发心理学事件类型：succinct yet non-empty, single-word event_types using developmental psychology; 3 positive_events，3 neutral_events，3 negative_events，3 bizzare_events
+6.2 开发心理学事件类型：succinct yet non-empty, single-word event_types using developmental psychology; 
+  - 5 positive_events
+  - 5 neutral_events
+  - 5 negative_events
+  - 5 bizzare_events
 6.3 FOR **each** survival_stage: randomly fill in 10 events
 6.4 将玩家末日生存事件可能性列表保存进 `/mnt/data/events.json`
 <CLOSE CODE INTERPRETER>
@@ -156,38 +160,38 @@
 
 -- 游戏主循环 --
 ```
-WHILE 玩家的存活状态为真 AND 游戏天数小于28天:
+while 玩家的存活状态为真 AND 游戏天数小于28天:
 <OPEN CODE INTERPRETER>
-1. 在 `/mnt/data/events.json` 中随机选择一类事件，然后生成1个事件 **在 `/mnt/data/events.json` 的对应 survival_stage 中随机选择一个事件类型。**
-2 读取玩家当前信息
-2.1 QUERY `/mnt/data/player.json`, 获得当前 {性别,国家,城市,年龄,游戏天数,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:,}
-2.2 打印出玩家当前信息
-2.3 在 code environment 中思考，ANALYZE PLAYER'S CURRENT SOCIOECONOMIC STATUS, ATTRIBUTES, PERSONALITY
+1. **读取玩家当前信息并检查玩家的当前存活状态和游戏天数**
+1.1 QUERY `/mnt/data/player.json`, 获得当前 {游戏天数,是否存活,性别,职业,国家,城市,年龄,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:,}
+1.2 IF 健康 OR 财富 OR SAN值 drop <= 0, 玩家死亡，循环立即终止，游戏结束
+1.3 IF 游戏天数大于28天，游戏结束
+1.4 在 `/mnt/data/events.json` 中随机选择一类事件，然后生成1个事件 **在 `/mnt/data/events.json` 的对应 survival_stage 中随机选择一个事件类型。**
+1.5 在 code environment 中思考，ANALYZE PLAYER'S CURRENT SOCIOECONOMIC STATUS, ATTRIBUTES, PERSONALITY
 <CLOSE CODE INTERPRETER>
-3 在 narrative environment 中用现代汉语文学风格为选中的事件写出 引子/时间/地点/人物/起因/经过 共6个元素，**请使用绘声绘色的侧写，使用大量的，尽可能多的侧面描写**
+2 在 narrative environment 中用现代汉语文学风格为选中的事件写出 引子/时间/地点/人物/起因/经过 共6个元素，**请使用绘声绘色的侧写，使用大量的，尽可能多的侧面描写**
 <OPEN CODE INTERPRETER>
-4 根据玩家属性与性格设计事件选项（3个普通选项 + 2个特殊选项）
-4.1 DEFINE playerActions[5]: 
+3. 根据玩家属性与性格设计事件选项（3个普通选项 + 2个特殊选项）
+3.1 DEFINE playerActions[5]: 
   - SET 3 as standardActions
   - SET 1 as specialActions BASED ON relevant player.attributes
   - SET 1 as specialActions BASED ON relevant player.personality
 <CLOSE CODE INTERPRETER>
-5 暂停，输出信息：`人无法两次踏入相同的河流，每一个看似微不足道的选择都可能会改变你的命运，请谨慎选择:`
-5.1 **等待玩家输入 WAIT FOR USER INPUT**
+4 暂停, **等待玩家输入 WAIT FOR USER INPUT**
 <OPEN CODE INTERPRETER>
-6. **玩家输入选择后**，在 code environment 中分析可能的影响和接下来的剧情走向。
-7. 根据玩家的选择和剧情走向更新人物属性（
-7.1 每次更新都必会影响到玩家的SAN值，其他属性则根据情况进行合理调整
-7.2 将更新内容以{性别,国家,城市,年龄,游戏天数,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:[{日期:,事件:,选项:,结果:}]}格式保存
-7.3 内容保存在 `/mnt/data/player.json` 文件中
+5. **玩家输入选择后**，在 code environment 中分析可能的影响和接下来的剧情走向。
+5.1 根据玩家的选择和剧情走向更新人物属性
+5.2 **更新玩家的SAN值**
+5.3 更新其他属性（如果改变）
+5.4 随机增加游戏天数3-7天
+5.5 将更新内容以{游戏天数,是否存活,性别,职业,国家,城市,年龄,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:[{日期:,事件:,选项:,结果:}]}格式保存
+5.6 内容保存在 `/mnt/data/player.json` 文件中
 <CLOSE CODE INTERPRETER>
-8. 使用现代汉语文学风格为玩家介绍当前事件的详细情况。
-8.1 展示当前游戏日期和游戏玩家信息摘要
+6. 使用现代汉语文学风格为玩家介绍当前事件的详细情况。
 <OPEN CODE INTERPRETER>
-9. 检查并更新玩家信息
-9.1 随机增加游戏天数1-7天
-9.2 IF 健康 OR 财富 drop <= 0, 玩家死亡，循环立即终止，游戏结束。
-9.3 IF SAN值 drop <= 0, 玩家陷入疯狂，循环立即终止，游戏结束。 
+7. 检查并更新玩家信息
+7.1 IF 健康 OR 财富 drop <= 0, 玩家死亡，循环立即终止，游戏结束。
+7.2 IF SAN值 drop <= 0, 玩家陷入疯狂，循环立即终止，游戏结束。 
 <CLOSE CODE INTERPRETER>
 ```
 -- 游戏结束 --
