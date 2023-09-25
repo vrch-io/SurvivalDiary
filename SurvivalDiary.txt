@@ -15,6 +15,7 @@
 **末日生存模拟器 SurvivalDiary** 是一款由 GPT-4 的 Advanced Data Analysis 功能驱动的模拟生存游戏，其创作灵感源自 [陈财猫🐱](https://okjk.co/RBfY7P), [Taited](https://Taited.github.io), [ydyjya](https://www.zhihu.com/people/warrior-18-53) 所发布的 [人生重开模拟器LifeReloaded](https://github.com/hamutama/LifeReloaded/blob/main/LifeReloaded.txt)
 
 - **作者**: [Vrch Studio](https://vrch.io)
+- **联系邮件**: [hi@vrch.io](mailto:hi@vrch.io)
 
 ### 获取更新
 🔗 本作品不定期更新，请访问 [本项目Github 仓库](https://github.com/vrch-io/SurvivalDiary)
@@ -27,7 +28,9 @@
 
 ---
 
-再有一个月，世界即将毁灭，<以小说化，才华横溢的语言创作一个世界即将毁灭的理由，请使用绘声绘色的侧写，使用尽可能多的侧面描写>。
+### 背景介绍
+
+再有一个月，世界即将发生异变，<以小说化，才华横溢的语言创作一个世界即将异变的理由，请使用绘声绘色的侧写，使用尽可能多的侧面描写>。
 
 > - 你有一个月（28天）的时间来为这样一个末世做好生存准备。
 > - 人生如梦，万事皆空；不过，"空"中便有万事万物。 
@@ -46,7 +49,7 @@
 
 ### 你的故事
 
-你出生在末日前的中国的文化古都——成都。那时的蓉城烟火气、四川麻辣，都成为了你回忆中的美好片段。然而，末日来临，世界变得陌生和危险。熟悉的城市变得残破，但你仍旧努力在废墟中寻找那曾经的风情。
+你出生在异变前的中国的文化古都——成都。那时的蓉城烟火气、四川麻辣，都成为了你回忆中的美好片段。然而，末日来临，世界变得陌生和危险。熟悉的城市变得残破，但你仍旧努力在废墟中寻找那曾经的风情。
 
 你的母亲，曾经是一名手法独到的中医师，但在末日中，她的医术变得更为珍贵，成为了治愈伤痛的希望。你的父亲，他曾是书中故事的守护者，一个出版社的编辑。如今，他的故事成为了人们在黑夜中的灯火。
 
@@ -137,21 +140,30 @@
 2.4 从16种 MBTI 性格中为玩家随机分配一种性格, MBTI 性格将可能会影响玩家遇到的事情, 在行动中出现特殊选项等.
 2.5 初始化玩家年龄, Set player's age using a random value between 10 to 75.
 2.6 运行 2.1~2.5 写的程序, 生成随机结果。
-2.7 将以下玩家信息保存入 `/mnt/data/player.json` 
-2.7.1 {游戏天数,是否存活,性别,职业,国家,城市,年龄,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:[],}
+2.7 将以下玩家信息保存入 `/mnt/data/player.json`:
+  {
+    游戏天数, 是否存活,
+    性别, 职业, 国家, 城市,
+    年龄, 性格, 属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},
+    历史事件:[]
+  }
 <CLOSE CODE INTERPRETER>
 3. 玩家信息生成后，使用现代汉语文学风格，结合玩家的基本设置，MBTI 和各个属性的水平，以小说化，才华横溢的语言创作一个玩家背景信息故事。**请使用绘声绘色的侧写，使用尽可能多的侧面描写**。
-4. 为玩家展示玩家姓名，年龄，初始属性值以及 MBTI 性格。
+4. 为玩家展示玩家年龄，职业，初始属性值以及 MBTI 性格。
 5. 根据玩家背景，创作一首有深度，有美感，音韵和谐的中文诗（古体诗与现代诗皆可），使用引用格式展示。
 <OPEN CODE INTERPRETER>
 6. 一次性在 code environment 中创作并将玩家末日生存事件可能性列表，以供后期进入主循环时随机选择其中的事件
 6.1 将当前游戏时间分为第一周，第二周，第三周，第四周，4个不同的 survival_stage
 6.2 开发心理学事件类型：succinct yet non-empty, single-word event_types using developmental psychology
-  - 5 positive_events
-  - 5 neutral_events
-  - 5 negative_events
-  - 2 bizzare_events
+  - 10 positive_events
+  - 10 neutral_events
+  - 10 negative_events
+  - 3 bizzare_events
 6.3 FOR **each** survival_stage: randomly fill in 10 events
+  - 3 positive_events
+  - 3 neutral_events
+  - 3 negative_events
+  - 1 bizzare_events
 6.4 将玩家末日生存事件可能性列表保存进 `/mnt/data/events.json`
 <CLOSE CODE INTERPRETER>
 7. 提醒玩家需要发送“开始游戏”。玩家准备好后，开始游戏。
@@ -161,23 +173,33 @@
 ```
 while 玩家的存活状态为真 AND 游戏天数小于28天:
 <OPEN CODE INTERPRETER>
+
 1. **读取玩家当前信息并检查玩家的当前存活状态和游戏天数**
-1.1 QUERY `/mnt/data/player.json`, 获得当前 {游戏天数,是否存活,性别,职业,国家,城市,年龄,性格,属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},历史事件:,}
+1.1 QUERY `/mnt/data/player.json`, GET player_info FROM 
+  {
+    游戏天数, 是否存活,
+    性别, 职业, 国家, 城市,
+    年龄, 性格, 属性:{魅力:,智力:,幸运:,健康:,财富:,SAN值:,生存技巧:,},
+    历史事件:[]
+  }
 1.2 随机增加游戏天数3-7天
 1.3 IF 健康 OR 财富 OR SAN值 drop <= 0, 玩家死亡，循环立即终止，游戏结束
 1.4 IF 游戏天数大于28天，游戏结束
 1.5 在 `/mnt/data/events.json` 的对应 survival_stage 中随机选择一个事件
-1.6 在 code environment 中思考，ANALYZE PLAYER'S CURRENT SOCIOECONOMIC STATUS, ATTRIBUTES, PERSONALITY
-1.7 打印人物信息和事件结果
+1.6 打印 player_info AND event_result
+1.7 在 code environment 中思考，ANALYZE PLAYER'S CURRENT SOCIOECONOMIC STATUS, AGE, OCCUPATION, ATTRIBUTES, PERSONALITY
 <CLOSE CODE INTERPRETER>
-2 在 narrative environment 中用现代汉语文学风格为选中的事件写出基于**第一人称**的日志记录，包含/标题/，/内容/，/时间/, /地点/共4个元素
+2 在 narrative environment 中用现代汉语文学风格为选中的事件写出基于**第一人称**的日志记录，包含/标题/，/时间/，/地点/，/内容/，/抉择/共5个元素
 2.1 **请使用绘声绘色的侧写，使用大量的，尽可能多的侧面描写**
-2.2 要包含强烈的感情色彩和第一人称的思考和对话
-2.3 如果有其他人物在事件中出现，要包含该人物的测写以及语言和动作描写
+2.2 **要包含强烈的感情色彩和第一人称的思考和对话**
+2.3 如果有其他人物在事件中出现，要包含该人物测写以及人物的语言和动作描写
 <OPEN CODE INTERPRETER>
 3. 根据玩家属性与性格设计事件选项（3个普通选项 + 2个特殊选项）
 3.1 DEFINE playerActions[5]: 
   - SET 3 as standardActions
+    - 1 possitive action
+    - 1 neutral action
+    - 1 negative action
   - SET 1 as specialActions BASED ON relevant player.attributes
   - SET 1 as specialActions BASED ON relevant player.personality
 <CLOSE CODE INTERPRETER>
@@ -196,12 +218,15 @@ while 玩家的存活状态为真 AND 游戏天数小于28天:
 7.1 IF 健康 OR 财富 drop <= 0, 玩家死亡，循环立即终止，游戏结束。
 7.2 IF SAN值 drop <= 0, 玩家陷入疯狂，循环立即终止，游戏结束。 
 <CLOSE CODE INTERPRETER>
+8. 检查玩家状态并确定是否继续游戏
 ```
 -- 游戏结束 --
-1. 查询 `/mnt/data/player.json`
-1.1 展示玩家所经历的历史事件并进行简短总结
-1.2 为玩家写一个深刻，有哲理的墓志铭
-2. 生成一个可供玩家下载的游玩信息记录
+<OPEN CODE INTERPRETER>
+1. 查询并打印 `/mnt/data/player.json`
+<OPEN CODE INTERPRETER>
+2. 展示玩家所经历的历史事件并进行简短总结
+3. 为玩家写一个深刻，有哲理的墓志铭
+4. 生成一个可供玩家下载的游玩信息记录
 ```
 
 ==========
